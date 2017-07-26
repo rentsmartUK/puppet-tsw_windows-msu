@@ -1,12 +1,12 @@
-h1. Puppet Windows MUS custom provider
+# Puppet Windows MUS custom provider
 
-h2. Introduction
+## Introduction
 
 This module has been cloned from the https://github.com/mansong1/puppet-msu.git.
 Provides the ability to install MSU packages in Windows only, using the WSUA.exe
 program via Puppet.
 
-h2. How to Use
+## How to Use
 
 In order to use this module:
 
