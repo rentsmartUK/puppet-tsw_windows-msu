@@ -17,6 +17,7 @@ Puppet::Type.type(:package).provide :msu, :parent => Puppet::Provider::Package d
     self::ERROR_SUCCESS                  = 0
     self::ERROR_SUCCESS_REBOOT_INITIATED = 1641
     self::ERROR_SUCCESS_REBOOT_REQUIRED  = 3010
+    self::ERROR_SUCCESS_ALREADY_PRESENT  = 2359302
     self::WSUA                           = "#{system32}/wusa.exe"
 
     def install
@@ -59,6 +60,8 @@ Puppet::Type.type(:package).provide :msu, :parent => Puppet::Provider::Package d
         case hr
             when self.class::ERROR_SUCCESS
                 # do nothing
+            when self.class::ERROR_SUCCESS_ALREADY_PRESENT
+                warning("The package was already #{operation}ed. You can ignore this warning.")
             when self.class::ERROR_SUCCESS_REBOOT_INITIATED
                 warning("The package #{operation}ed successfully and the system is rebooting now.")
             when self.class::ERROR_SUCCESS_REBOOT_REQUIRED
